@@ -6,23 +6,23 @@
     /**
       Private Methods
     */
-    _inArray: function( arg, _a ) {
-      for ( var i = 0, _len = _a.length; i < _len; i++ ) {
-        if ( _a.indexOf(arg) >= 0 ) {
+    _inArray: function( arg, _arr ) {
+      var i = 0, _len = _arr.length;
+      for ( ; i < _len; i++ ) {
+        if ( _arr.indexOf(arg) >= 0 ) {
           return true; // || index?
         }        
       }
       return false;
     },
-    _unique: function(_a) {
-      var _r = [];
-
-      for ( var i = 0, _len = _a.length; i < _len; i++ ) {
-        if ( !this._inArray(_a[i], _r) ) {
-          _r.push(_a[i]);
+    _unique: function(_arr) {
+      var i = 0, _len = _arr.length, _ret = [];
+      for ( ; i < _len; i++ ) {
+        if ( !this._inArray(_arr[i], _ret) ) {
+          _ret.push(_arr[i]);
         }          
       }        
-      return _r;
+      return _ret;
     },
     _merge: function( _a, _b ) {
       var i = 0, _len = _b.length;
@@ -45,10 +45,8 @@
     },   
     _parser:  function  (_str) {
       //  Even scarier then before.
-      var _arr  = eval('[' + _str + ']'), 
-          _len  = _arr.length, 
-          i     = 0, 
-          _ret  = {};       
+      var _arr  = eval('[' + _str + ']'), i = 0, _len = _arr.length, _ret  = {};  
+      //  It's especially great because it doesnt waste ANY time checking ANYTHING ;)
 
       for ( ; i < _len; i++ ) {
         this._extend(_ret, _arr[i]);
