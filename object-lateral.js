@@ -7,14 +7,13 @@
       Private Methods
     */
     _parser:   function (_str) {
-      var _arr  = _str.split('}{'), 
-          _ret  = {}, 
-          _new, _data;
-
+      var _arr  = eval('[' + _str + ']'), 
+          _ret  = {};       
+      //  Even scarier then before.
       for ( var i = 0, _len = _arr.length; i < _len; i++ ) {
-        _data           = ( ( _arr[i].replace( '{' , '').replace('}', '') ).replace( /^\s+|\s+$/g, '') ).split(':'), 
-                          //  Hideous. But seriously, who cares? Submit a patch?
-        _ret[_data[0]]  = ( _data[1].replace(/'/g, '') ).replace( /^\s+|\s+$/g, '');
+        for( var member in _arr[i] ) {
+          _ret[member]  =   _arr[i][member];
+        }
       }
       return _ret;
     },
@@ -31,6 +30,6 @@
 
 //  USAGE:
 //  Pointlessly odd format... But who cares, its just for fun right?
-var string       = "{ propA:'dog' }{ propB:'cat' }{ propC:'hamster' }"; 
+var string       = "{ propA:'dog' },{ propB:'cat' },{ propC:'hamster' }"; 
 //  http://getfirebug.com or go home.
 console.log( Lateral.toObject(string) );
