@@ -68,6 +68,6 @@
 //  USAGE:
 //  A string... Pointlessly formatted as JSON... But who cares, its just for fun right?
 //  after all, this is just a crummy json parser wanna-be.
-var string       = "{ A: { pet:'dog', aArr: ['i', 'am', 'an', 'array'] }, B:{ pet:'cat', bObj: { a: 'foo', b:'bar', c:'baz' } },C:{ pet:'dinosaur', methodA: function() { return 'a method' } }}"; 
+var string       = "{ A: { pet:'dog', aArr: ['i', 'am', 'an', 'array'] }, B:{ pet:'cat', bObj: { a: 'foo', b:'bar', c:'baz' } },C:{ pet:'dinosaur', cMeth: function() { return 'a method' } }}"; 
 //  http://getfirebug.com or go home.
 console.log( Lateral.toObject(string) );
