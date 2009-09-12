@@ -6,14 +6,24 @@
     /**
       Private Methods
     */
-    _parser:   function (_str) {
+    _extend:   function(_obj, _new) { 
+      for (var _n in _new) { 
+        if (_new.hasOwnProperty(_n)) { 
+          var _nProp  = _new[_n],
+              _oProp  = _obj[_n]; 
+        } 
+        _obj[_n] = (_oProp && typeof _nProp == 'object' && typeof _oProp == 'object') ? 
+                      this.merge(_oProp, _nProp) : _nProp; 
+      } 
+      return _obj; 
+    },   
+    _parser:  function  (_str) {
+      //  Even scarier then before.
       var _arr  = eval('[' + _str + ']'), 
           _ret  = {};       
-      //  Even scarier then before.
+      
       for ( var i = 0, _len = _arr.length; i < _len; i++ ) {
-        for( var member in _arr[i] ) {
-          _ret[member]  =   _arr[i][member];
-        }
+        this._extend(_ret, _arr[i]);
       }
       return _ret;
     },
@@ -30,6 +40,6 @@
 
 //  USAGE:
 //  Pointlessly odd format... But who cares, its just for fun right?
-var string       = "{ propA:'dog' },{ propB:'cat' },{ propC:'hamster' }"; 
+var string       = "{ propA:'dog' },{ propB:'cat', bObj: { a: 'foo', b:'bar', c:'baz' } },{ propC:'hamster', methodA: function() { return 'a method' } }"; 
 //  http://getfirebug.com or go home.
 console.log( Lateral.toObject(string) );
