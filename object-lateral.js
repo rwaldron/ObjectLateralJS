@@ -6,11 +6,20 @@
     /**
       Private Methods
     */
+    _inArray: function( arg, _a ) {
+      for ( var i = 0, _len = _a.length; i < _len; i++ ) {
+        if ( _a.indexOf(arg) >= 0 ) {
+          return true; // || index?
+        }        
+      }
+      return false;
+    },
+    
     _unique: function(_a) {
       var _r = [];
 
       for ( var i = 0, _len = _a.length; i < _len; i++ ) {
-        if ( !$.in_array(_a[i], _r) ) {
+        if ( !$._inArray(_a[i], _r) ) {
           _r.push(_a[i]);
         }          
       }        
