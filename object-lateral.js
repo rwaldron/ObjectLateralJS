@@ -14,12 +14,11 @@
       }
       return false;
     },
-    
     _unique: function(_a) {
       var _r = [];
 
       for ( var i = 0, _len = _a.length; i < _len; i++ ) {
-        if ( !$._inArray(_a[i], _r) ) {
+        if ( !this._inArray(_a[i], _r) ) {
           _r.push(_a[i]);
         }          
       }        
