@@ -42,7 +42,7 @@
                       this._merge(_oProp, _nProp) : _nProp; 
       } 
       return _obj; 
-    },   
+    },
     _parser:  function  (_str) {
       //  Even scarier then before.
       var _arr  = eval('[' + _str + ']'), i = 0, _len = _arr.length, _ret  = {};  
@@ -58,7 +58,10 @@
     */
     toObject: function (_str) {
       return this._parser(_str);
-    }
+    },
+    extendLaterals  :function(_objA, _objB) {
+      return this._extend(_objA, _objB);
+    },
   };
   window.Lateral = new ObjectLateral();
 })();
@@ -69,3 +72,11 @@
 var string       = "{ A: { pet:'dog', aArr: ['i', 'am', 'an', 'array'] }, B:{ pet:'cat', bObj: { a: 'foo', b:'bar', c:'baz' } },C:{ pet:'dinosaur', cMeth: function() { return 'a method' } }}"; 
 //  http://getfirebug.com or go home.
 console.log( Lateral.toObject(string) );
+
+
+NEW:
+var objectA = { foo:'bar' }, 
+    objectB = { zoo:'baz' };
+
+
+console.log( Lateral.extendLaterals(objectA, objectB) );
