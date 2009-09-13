@@ -87,6 +87,9 @@
           
         }
       }
+    },
+    toss: function (_evt, _el, _obj) {
+      return this.eventLateral(_evt, _el, _obj);
     }
   };
   window.Lateral = new ObjectLateral();
