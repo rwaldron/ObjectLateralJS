@@ -77,9 +77,14 @@
           siblings[i].addEventListener(_evt, function (e) {
             if ( e.target.tagName == _el.tagName && e.target !== _el ) {
               this.lateral  = objectA;
+              
+              //  This crap is for demo purpose only. whatever.
               console.group('Object laterally passed to:');
               console.log(this);
               console.log('Right click the above element and click "Inspect in DOM tab, scroll down to the "lateral" member');
+              console.log(this.lateral);
+              console.log('Click the element above to view the contents of the "lateral" member in the DOM tab');
+              //console.log('Right click the above element and click "Inspect in DOM tab, scroll down to the "lateral" member');
               console.groupEnd();
             }
     
@@ -116,6 +121,7 @@ document.addEventListener('DOMContentLoaded', function () {
   var pres  = document.getElementsByTagName('pre');
   for( var i = 0, _len = pres.length; i<_len; i++ ) {
     Lateral.eventLateral('click', pres[i], objectA);
-    console.log('Click anywhere in the light blue code sections to pass some objects around laterally!');
   }
 }, false);
+
+console.log('Click anywhere in the light blue code sections to pass some objects around laterally!');
