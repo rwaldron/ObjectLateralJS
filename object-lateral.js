@@ -56,9 +56,11 @@
     /**
       Public Methods
     */
+    //  Convert a string into an object... duh.
     toObject: function (_str) {
       return this._parser(_str);
     },
+    //  Merge two objects... n00b.
     extendLaterals  :function(_objA, _objB) {
       return this._extend(_objA, _objB);
     },
