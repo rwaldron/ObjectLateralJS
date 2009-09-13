@@ -61,9 +61,33 @@
       return this._parser(_str);
     },
     //  Merge two objects... n00b.
-    extendLaterals  :function(_objA, _objB) {
+    extendLaterals: function(_objA, _objB) {
       return this._extend(_objA, _objB);
     },
+    eventLateral:   function (_evt, _el, _obj) {
+      //maybe this could suck less...
+      var siblings  = _el.parentNode.childNodes, 
+          i         = 0, 
+          _len      = siblings.length, 
+          _lateralTag   = _el.tagName;
+      
+      
+      for(  ; i<_len; i++) {
+        if ( _lateralTag == siblings[i].tagName) {
+          siblings[i].addEventListener(_evt, function (e) {
+            if ( e.target.tagName == _el.tagName && e.target !== _el ) {
+              this.lateral  = objectA;
+              console.group('Object laterally passed to:');
+              console.log(this);
+              console.log('Right click the above element and click "Inspect in DOM tab, scroll down to the "lateral" member');
+              console.groupEnd();
+            }
+    
+          }, false);
+          
+        }
+      }
+    }
   };
   window.Lateral = new ObjectLateral();
 })();
@@ -80,5 +104,15 @@ NEW:
 var objectA = { foo:'bar' }, 
     objectB = { zoo:'baz' };
 
-
 console.log( Lateral.extendLaterals(objectA, objectB) );
+
+
+NEWER:
+document.addEventListener('DOMContentLoaded', function () {
+  
+  var pres  = document.getElementsByTagName('pre');
+  for( var i = 0, _len = pres.length; i<_len; i++ ) {
+    Lateral.eventLateral('click', pres[i], objectA);
+    console.log('Click anywhere in the light blue code sections to pass some objects around laterally!');
+  }
+}, false);
